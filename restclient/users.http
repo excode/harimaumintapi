@@ -3,7 +3,7 @@
 @AUTH = authtoken
 @TESTID = testID
 //LOGIN ENDPOINT TO GET AUTH TOKEN
-POST {{HOST}}/auth HTTP/1.1
+POST {{HOST1}}/auth HTTP/1.1
 content-type: application/json
 
 {
