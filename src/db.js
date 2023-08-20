@@ -6,13 +6,14 @@ const pool = new Pool({
   user: env.DB_USER || 'harimauboss',
   password: env.DB_PASSWORD || "AVNS_BPBWDPFjw2WRNECu1iV" ,
   host: env.DB_HOST || "private-db-postgresql-sgp1-06768-do-user-8847043-0.b.db.ondigitalocean.com",
-  port: env.DB_PORT || "25060",
+  port: env.DB_PORT || "25061",
   database: env.DB_NAME || "harimau" 
 });
 //console.log(pool);
 
 module.exports = pool;
 async function createTableIfNotExists() {
+    
     let  client = await pool.connect()
     const ext=`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`
     // REMOVE THIS FROM PRODUCTION

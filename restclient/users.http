@@ -41,7 +41,7 @@ content-type: application/json
 }
 ###
 #MAIN REGISTRATION for Java Spring boot
-POST {{HOST1}}/users/reg HTTP/1.1
+POST {{HOST}}/users/reg HTTP/1.1
 content-type: application/json
  
 {
