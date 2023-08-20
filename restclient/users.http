@@ -1,5 +1,5 @@
-@HOST = https://goldfish-app-l4bmd.ondigitalocean.app
-@HOST1 = http://localhost:8080
+@HOST1 = https://goldfish-app-l4bmd.ondigitalocean.app
+@HOST = http://localhost:8080
 @AUTH = authtoken
 @TESTID = testID
 //LOGIN ENDPOINT TO GET AUTH TOKEN
@@ -37,7 +37,8 @@ content-type: application/json
 "firstname":"uCode",
 "lastname":"Test",
 "usertype":"0",
-"mobile":"60176408250"
+"mobile":"60176408252",
+"referral":"a@aaa.com"
 }
 ###
 #MAIN REGISTRATION for Java Spring boot
