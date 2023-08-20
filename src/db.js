@@ -5,7 +5,7 @@ const  env  = process.env;
 const pool = new Pool({
   user: env.DB_USER || 'doadmin',
   password: env.DB_PASSWORD || "AVNS_EHbKeqd03ft-2cIK8eD" ,
-  host: env.DB_HOST || "db-postgresql-sgp1-06768-do-user-8847043-0.b.db.ondigitalocean.com",
+  host: env.DB_HOST || "private-db-postgresql-sgp1-06768-do-user-8847043-0.b.db.ondigitalocean.com",
   port: env.DB_PORT || "25060",
   database: env.DB_NAME || "defaultdb" 
 });
