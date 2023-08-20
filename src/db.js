@@ -3,11 +3,11 @@ const Pool = require("pg").Pool;
 const  env  = process.env;
 // PLEASE CREATE THE DATABSE harimaumint and add new user
 const pool = new Pool({
-  user: env.DB_USER || 'doadmin',
-  password: env.DB_PASSWORD || "AVNS_EHbKeqd03ft-2cIK8eD" ,
+  user: env.DB_USER || 'harimauboss',
+  password: env.DB_PASSWORD || "AVNS_BPBWDPFjw2WRNECu1iV" ,
   host: env.DB_HOST || "private-db-postgresql-sgp1-06768-do-user-8847043-0.b.db.ondigitalocean.com",
   port: env.DB_PORT || "25060",
-  database: env.DB_NAME || "defaultdb" 
+  database: env.DB_NAME || "harimau" 
 });
 //console.log(pool);
 
