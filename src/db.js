@@ -13,7 +13,7 @@ const pool = new Pool({
 
 module.exports = pool;
 async function createTableIfNotExists() {
-    console.log(pool.DB_HOST)
+    console.log(pool)
     console.log(pool.DB_USER)
     let  client = await pool.connect()
     const ext=`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`
