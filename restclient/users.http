@@ -1,4 +1,5 @@
-@HOST = http://localhost:8080
+@HOST = https://goldfish-app-l4bmd.ondigitalocean.app
+@HOST1 = http://localhost:8080
 @AUTH = authtoken
 @TESTID = testID
 //LOGIN ENDPOINT TO GET AUTH TOKEN
@@ -40,16 +41,17 @@ content-type: application/json
 }
 ###
 #MAIN REGISTRATION for Java Spring boot
-POST {{HOST}}/reg HTTP/1.1
+POST {{HOST1}}/users/reg HTTP/1.1
 content-type: application/json
  
 {
-"email":"test@ucode.ai",
+"email":"boss1@harimaumint.com",
 "password":"123456",
-"firstname":"uCode",
-"lastname":"Test",
+"firstname":"Harimau",
+"lastname":"Mint",
 "usertype":"0",
-"mobile":"60176408250"
+"mobile":"60176408250",
+"referral":"1@harimaumint.com"
 }
 ###
 
