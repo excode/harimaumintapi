@@ -1,0 +1,719 @@
+
+securitySchemes:
+    bearerAuth:  # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+paths:
+  /accounts:
+    post:
+      security:
+      - bearerAuth: []
+      tags:
+        - accounts
+      summary: Add new Accounts
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: displayName
+          description: Save new Accounts
+          required: true
+          schema:
+            $ref: '#/definitions/accounts'
+      responses:
+        '201':
+          description: An object with Accounts details
+
+  /accounts/:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - accounts
+      summary: List Accounts
+      description: Search Accounts 
+      parameters:
+        - name: page
+          in: query
+          description: page No
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit data per page or Page Size
+          required: false
+          explode: true
+          schema:
+            type: integer
+        
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: accounttype
+          in: query
+          description: accounttype values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: accounttype_mode
+          in: query
+          description: accounttype mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: quantity
+          in: query
+          description: quantity values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: quantity_mode
+          in: query
+          description: quantity mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: unitprice
+          in: query
+          description: unitprice values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: unitprice_mode
+          in: query
+          description: unitprice mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: total
+          in: query
+          description: total values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: total_mode
+          in: query
+          description: total mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: maturedate
+          in: query
+          description: maturedate values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            format: date
+        - name: maturedate_mode
+          in: query
+          description: maturedate mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: dateIs
+            enum:
+              - dateIs
+              - dateIsNot
+              - dateBefore
+              - dateAfter
+        - name: termscount
+          in: query
+          description: termscount values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: termscount_mode
+          in: query
+          description: termscount mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: monthcount
+          in: query
+          description: monthcount values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: monthcount_mode
+          in: query
+          description: monthcount mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: status
+          in: query
+          description: status values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: status_mode
+          in: query
+          description: status mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: block
+          in: query
+          description: block true or false
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: true
+            enum:
+              - true
+              - false
+        - name: owner
+          in: query
+          description: owner values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: owner_mode
+          in: query
+          description: owner mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  perpage:
+                    type: integer
+                  page:
+                    type: integer
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/definitions/accountsData'
+        '400':
+          description: Invalid status value
+/accounts/all:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - accounts
+      summary: List Accounts
+      description: get all data without paging
+      parameters: 
+       
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: accounttype
+          in: query
+          description: accounttype values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: accounttype_mode
+          in: query
+          description: accounttype mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: quantity
+          in: query
+          description: quantity values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: quantity_mode
+          in: query
+          description: quantity mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: unitprice
+          in: query
+          description: unitprice values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: unitprice_mode
+          in: query
+          description: unitprice mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: total
+          in: query
+          description: total values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: total_mode
+          in: query
+          description: total mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: maturedate
+          in: query
+          description: maturedate values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            format: date
+        - name: maturedate_mode
+          in: query
+          description: maturedate mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: dateIs
+            enum:
+              - dateIs
+              - dateIsNot
+              - dateBefore
+              - dateAfter
+        - name: termscount
+          in: query
+          description: termscount values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: termscount_mode
+          in: query
+          description: termscount mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: monthcount
+          in: query
+          description: monthcount values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: monthcount_mode
+          in: query
+          description: monthcount mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: status
+          in: query
+          description: status values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: status_mode
+          in: query
+          description: status mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: block
+          in: query
+          description: block true or false
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: true
+            enum:
+              - true
+              - false
+        - name: owner
+          in: query
+          description: owner values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: owner_mode
+          in: query
+          description: owner mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/accountsData'
+        '400':
+          description: Invalid status value
+/accounts/suggestions:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - accounts
+      summary: List accounts
+      description: Keyward search data on accounttype,status,owner
+      parameters:
+        - name: search  
+          in: query
+          description: keyword search on accounttype,status,owner
+          required: false
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/accountsData'
+        '400':
+          description: Invalid status value
+/accounts/{id}:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - accounts
+      summary: List accounts
+      description: get 
+      parameters:
+        - name: id
+          in: path
+          description: get Accounts by id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/definitions/accountsData'
+        '400':
+          description: Invalid status value
+definitions:
+  accounts:
+      type: object
+      properties:
+        
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        accounttype:
+            type: string
+        quantity:
+            type: number
+            format: double
+        unitprice:
+            type: number
+            format: double
+        total:
+            type: number
+            format: double
+        maturedate:
+            type: string
+            format: date-time
+        termscount:
+            type: integer
+        monthcount:
+            type: integer
+        status:
+            type: string
+        block:
+            type: boolean
+        owner:
+            type: string
+          
+
+  accountsData:
+      type: object
+      properties:
+      
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        accounttype:
+            type: string
+        quantity:
+            type: number
+            format: double
+        unitprice:
+            type: number
+            format: double
+        total:
+            type: number
+            format: double
+        maturedate:
+            type: string
+            format: date-time
+        termscount:
+            type: integer
+        monthcount:
+            type: integer
+        status:
+            type: string
+        block:
+            type: boolean
+        owner:
+            type: string
+          
+    

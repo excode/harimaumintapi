@@ -1,0 +1,309 @@
+
+securitySchemes:
+    bearerAuth:  # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+paths:
+  /history:
+    post:
+      security:
+      - bearerAuth: []
+      tags:
+        - history
+      summary: Add new History
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: displayName
+          description: Save new History
+          required: true
+          schema:
+            $ref: '#/definitions/history'
+      responses:
+        '201':
+          description: An object with History details
+
+  /history/:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - history
+      summary: List History
+      description: Search History 
+      parameters:
+        - name: page
+          in: query
+          description: page No
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit data per page or Page Size
+          required: false
+          explode: true
+          schema:
+            type: integer
+        
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: subject
+          in: query
+          description: subject values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: subject_mode
+          in: query
+          description: subject mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  perpage:
+                    type: integer
+                  page:
+                    type: integer
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/definitions/historyData'
+        '400':
+          description: Invalid status value
+/history/all:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - history
+      summary: List History
+      description: get all data without paging
+      parameters: 
+       
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: subject
+          in: query
+          description: subject values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: subject_mode
+          in: query
+          description: subject mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/historyData'
+        '400':
+          description: Invalid status value
+/history/suggestions:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - history
+      summary: List history
+      description: Keyward search data on subject
+      parameters:
+        - name: search  
+          in: query
+          description: keyword search on subject
+          required: false
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/historyData'
+        '400':
+          description: Invalid status value
+/history/{id}:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - history
+      summary: List history
+      description: get 
+      parameters:
+        - name: id
+          in: path
+          description: get History by id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/definitions/historyData'
+        '400':
+          description: Invalid status value
+definitions:
+  history:
+      type: object
+      properties:
+        
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        subject:
+            type: string
+            maxLength: 50      
+
+
+  historyData:
+      type: object
+      properties:
+      
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        subject:
+            type: string
+            maxLength: 50      
+
+    

@@ -1,0 +1,79 @@
+@HOST = http://localhost:8080
+@AUTH = authtoken
+@TESTID = testID
+//LOGIN ENDPOINT TO GET AUTH TOKEN
+POST {{HOST}}/auth HTTP/1.1
+content-type: application/json
+
+{
+"email":"test@ucode.ai",
+"password":"123456"
+}
+###
+POST {{HOST}}/accounts HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"accounttype":"eaclf",
+"quantity":"1.35",
+"unitprice":"1.35",
+"total":"1.35",
+"maturedate":"2023-05-07",
+"termscount":"1",
+"monthcount":"1",
+"status":"laboris",
+"block":"false",
+"owner":"eu@ucode.ai"
+}
+
+###
+
+GET {{HOST}}/accounts? HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/accounts?accounttype=eaclf&quantity=1.35&unitprice=1.35&total=1.35&maturedate=2023-05-07&termscount=1&monthcount=1&status=laboris&block=false&owner=eu@ucode.a HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/accounts/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+PUT {{HOST}}/accounts/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"accounttype":"eaclf",
+"quantity":"1.35",
+"unitprice":"1.35",
+"total":"1.35",
+"maturedate":"2023-05-07",
+"termscount":"1",
+"monthcount":"1",
+"status":"laboris",
+"block":"false",
+"owner":"eu@ucode.ai"
+}
+###
+PATCH {{HOST}}/accounts/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"accounttype":"eaclf",
+"quantity":"1.35",
+"unitprice":"1.35",
+"total":"1.35",
+"maturedate":"2023-05-07",
+"termscount":"1",
+"monthcount":"1",
+"status":"laboris",
+"block":"false",
+"owner":"eu@ucode.ai"
+}
+###
+DELETE {{HOST}}/accounts/{{TESTID}} http/1.1
+Authorization: Bearer {{AUTH}} 

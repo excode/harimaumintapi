@@ -1,0 +1,61 @@
+@HOST = http://localhost:8080
+@AUTH = authtoken
+@TESTID = testID
+//LOGIN ENDPOINT TO GET AUTH TOKEN
+POST {{HOST}}/auth HTTP/1.1
+content-type: application/json
+
+{
+"email":"test@ucode.ai",
+"password":"123456"
+}
+###
+POST {{HOST}}/userdetails HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"address":"Lorem eu ullamco mollit mollit.",
+"icpassport":"duis",
+"photo":"",
+"icdocument":""
+}
+
+###
+
+GET {{HOST}}/userdetails? HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/userdetails?address=Lorem eu u&icpassport=duis&photo=&icdocument= HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/userdetails/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+PUT {{HOST}}/userdetails/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"address":"Lorem eu ullamco mollit mollit.",
+"icpassport":"duis",
+"photo":"",
+"icdocument":""
+}
+###
+PATCH {{HOST}}/userdetails/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"address":"Lorem eu ullamco mollit mollit.",
+"icpassport":"duis",
+"photo":"",
+"icdocument":""
+}
+###
+DELETE {{HOST}}/userdetails/{{TESTID}} http/1.1
+Authorization: Bearer {{AUTH}} 

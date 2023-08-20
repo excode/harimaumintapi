@@ -1,0 +1,509 @@
+
+securitySchemes:
+    bearerAuth:  # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+paths:
+  /ewallets:
+    post:
+      security:
+      - bearerAuth: []
+      tags:
+        - ewallets
+      summary: Add new E-Wallets
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: displayName
+          description: Save new E-Wallets
+          required: true
+          schema:
+            $ref: '#/definitions/ewallets'
+      responses:
+        '201':
+          description: An object with E-Wallets details
+
+  /ewallets/:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - ewallets
+      summary: List E-Wallets
+      description: Search E-Wallets 
+      parameters:
+        - name: page
+          in: query
+          description: page No
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit data per page or Page Size
+          required: false
+          explode: true
+          schema:
+            type: integer
+        
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: wallettype
+          in: query
+          description: wallettype values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: wallettype_mode
+          in: query
+          description: wallettype mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: balance
+          in: query
+          description: balance values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: balance_mode
+          in: query
+          description: balance mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: hold
+          in: query
+          description: hold values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: hold_mode
+          in: query
+          description: hold mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: status
+          in: query
+          description: status true or false
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: true
+            enum:
+              - true
+              - false
+        - name: blocked
+          in: query
+          description: blocked true or false
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: true
+            enum:
+              - true
+              - false
+        - name: name
+          in: query
+          description: name values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: name_mode
+          in: query
+          description: name mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  perpage:
+                    type: integer
+                  page:
+                    type: integer
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/definitions/ewalletsData'
+        '400':
+          description: Invalid status value
+/ewallets/all:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - ewallets
+      summary: List E-Wallets
+      description: get all data without paging
+      parameters: 
+       
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: wallettype
+          in: query
+          description: wallettype values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: wallettype_mode
+          in: query
+          description: wallettype mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: balance
+          in: query
+          description: balance values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: balance_mode
+          in: query
+          description: balance mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: hold
+          in: query
+          description: hold values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: hold_mode
+          in: query
+          description: hold mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: equals
+            enum:
+              - equals
+              - notEquals
+              - lt
+              - lte
+              - gt
+              - gte
+        - name: status
+          in: query
+          description: status true or false
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: true
+            enum:
+              - true
+              - false
+        - name: blocked
+          in: query
+          description: blocked true or false
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: true
+            enum:
+              - true
+              - false
+        - name: name
+          in: query
+          description: name values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: name_mode
+          in: query
+          description: name mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/ewalletsData'
+        '400':
+          description: Invalid status value
+/ewallets/suggestions:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - ewallets
+      summary: List ewallets
+      description: Keyward search data on wallettype,name
+      parameters:
+        - name: search  
+          in: query
+          description: keyword search on wallettype,name
+          required: false
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/ewalletsData'
+        '400':
+          description: Invalid status value
+/ewallets/{id}:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - ewallets
+      summary: List ewallets
+      description: get 
+      parameters:
+        - name: id
+          in: path
+          description: get E-Wallets by id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/definitions/ewalletsData'
+        '400':
+          description: Invalid status value
+definitions:
+  ewallets:
+      type: object
+      properties:
+        
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        wallettype:
+            type: string
+        balance:
+            type: number
+            format: double
+        hold:
+            type: number
+            format: double
+        status:
+            type: boolean
+        blocked:
+            type: boolean
+        name:
+            type: string
+            minLength: 2      
+            maxLength: 25      
+            
+
+  ewalletsData:
+      type: object
+      properties:
+      
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        wallettype:
+            type: string
+        balance:
+            type: number
+            format: double
+        hold:
+            type: number
+            format: double
+        status:
+            type: boolean
+        blocked:
+            type: boolean
+        name:
+            type: string
+            minLength: 2      
+            maxLength: 25      
+            
+    

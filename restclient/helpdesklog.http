@@ -1,0 +1,58 @@
+@HOST = http://localhost:8080
+@AUTH = authtoken
+@TESTID = testID
+//LOGIN ENDPOINT TO GET AUTH TOKEN
+POST {{HOST}}/auth HTTP/1.1
+content-type: application/json
+
+{
+"email":"test@ucode.ai",
+"password":"123456"
+}
+###
+POST {{HOST}}/helpdesklog HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"subject":"adclf",
+"comments":"",
+"documents":""
+}
+
+###
+
+GET {{HOST}}/helpdesklog? HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/helpdesklog?subject=adclf&comments=&documents= HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/helpdesklog/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+PUT {{HOST}}/helpdesklog/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"subject":"adclf",
+"comments":"",
+"documents":""
+}
+###
+PATCH {{HOST}}/helpdesklog/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"subject":"adclf",
+"comments":"",
+"documents":""
+}
+###
+DELETE {{HOST}}/helpdesklog/{{TESTID}} http/1.1
+Authorization: Bearer {{AUTH}} 

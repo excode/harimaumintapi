@@ -1,0 +1,79 @@
+@HOST = http://localhost:8080
+@AUTH = authtoken
+@TESTID = testID
+//LOGIN ENDPOINT TO GET AUTH TOKEN
+POST {{HOST}}/auth HTTP/1.1
+content-type: application/json
+
+{
+"email":"test@ucode.ai",
+"password":"123456"
+}
+###
+POST {{HOST}}/banks HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"bankname":"iru",
+"swiftcode":"nulla",
+"bankaddress":"Enim officia aute Lorem adipisicing aliqua anim.",
+"city":"idclf",
+"state":"enim",
+"postcode":"enim",
+"accountname":"duis",
+"accountnumber":"deserunt",
+"document":"",
+"active":"false"
+}
+
+###
+
+GET {{HOST}}/banks? HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/banks?bankname=irure&swiftcode=nulla&bankaddress=Enim offic&city=idclf&state=enim&postcode=enim&accountname=duis&accountnumber=deserunt&document=&active=false HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/banks/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+PUT {{HOST}}/banks/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"bankname":"iru",
+"swiftcode":"nulla",
+"bankaddress":"Enim officia aute Lorem adipisicing aliqua anim.",
+"city":"idclf",
+"state":"enim",
+"postcode":"enim",
+"accountname":"duis",
+"accountnumber":"deserunt",
+"document":"",
+"active":"false"
+}
+###
+PATCH {{HOST}}/banks/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"bankname":"iru",
+"swiftcode":"nulla",
+"bankaddress":"Enim officia aute Lorem adipisicing aliqua anim.",
+"city":"idclf",
+"state":"enim",
+"postcode":"enim",
+"accountname":"duis",
+"accountnumber":"deserunt",
+"document":"",
+"active":"false"
+}
+###
+DELETE {{HOST}}/banks/{{TESTID}} http/1.1
+Authorization: Bearer {{AUTH}} 

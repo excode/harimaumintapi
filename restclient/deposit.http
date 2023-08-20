@@ -1,0 +1,70 @@
+@HOST = http://localhost:8080
+@AUTH = authtoken
+@TESTID = testID
+//LOGIN ENDPOINT TO GET AUTH TOKEN
+POST {{HOST}}/auth HTTP/1.1
+content-type: application/json
+
+{
+"email":"test@ucode.ai",
+"password":"123456"
+}
+###
+POST {{HOST}}/deposit HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"wallettype":"sitclf",
+"wallet":"quiclf",
+"amount":"1.35",
+"document":"",
+"method":"quis",
+"comments":"Ex sint ad tempor Lorem aliquip commodo occaecat proident excepteur tempor laboris.",
+"status":"voluptate"
+}
+
+###
+
+GET {{HOST}}/deposit? HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/deposit?wallettype=sitclf&wallet=quiclf&amount=1.35&document=&method=quis&comments=Ex sint ad&status=voluptate HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/deposit/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+PUT {{HOST}}/deposit/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"wallettype":"sitclf",
+"wallet":"quiclf",
+"amount":"1.35",
+"document":"",
+"method":"quis",
+"comments":"Ex sint ad tempor Lorem aliquip commodo occaecat proident excepteur tempor laboris.",
+"status":"voluptate"
+}
+###
+PATCH {{HOST}}/deposit/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"wallettype":"sitclf",
+"wallet":"quiclf",
+"amount":"1.35",
+"document":"",
+"method":"quis",
+"comments":"Ex sint ad tempor Lorem aliquip commodo occaecat proident excepteur tempor laboris.",
+"status":"voluptate"
+}
+###
+DELETE {{HOST}}/deposit/{{TESTID}} http/1.1
+Authorization: Bearer {{AUTH}} 

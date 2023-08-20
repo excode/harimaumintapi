@@ -1,0 +1,394 @@
+
+securitySchemes:
+    bearerAuth:  # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+paths:
+  /userdetails:
+    post:
+      security:
+      - bearerAuth: []
+      tags:
+        - userdetails
+      summary: Add new User Details
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: displayName
+          description: Save new User Details
+          required: true
+          schema:
+            $ref: '#/definitions/userdetails'
+      responses:
+        '201':
+          description: An object with User Details details
+
+  /userdetails/upload/{colName}/{rowId}:
+    post:
+      security:
+      - bearerAuth: []
+      tags:
+      - userdetails
+      parameters:
+      - name: colName
+        in: path
+        description: Column/Field name in table/document
+        required: true
+        schema:
+          type: string
+      - name: rowId
+        in: path
+        description: primary id in table/document
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: file
+              properties:
+                filename:
+                  type: file
+                  format: binary
+  responses:
+    '200':
+      description: Successful upload
+        
+  /userdetails/:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - userdetails
+      summary: List User Details
+      description: Search User Details 
+      parameters:
+        - name: page
+          in: query
+          description: page No
+          required: false
+          explode: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit data per page or Page Size
+          required: false
+          explode: true
+          schema:
+            type: integer
+        
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: address
+          in: query
+          description: address values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: address_mode
+          in: query
+          description: address mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: icpassport
+          in: query
+          description: icpassport values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: icpassport_mode
+          in: query
+          description: icpassport mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  perpage:
+                    type: integer
+                  page:
+                    type: integer
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/definitions/userdetailsData'
+        '400':
+          description: Invalid status value
+/userdetails/all:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - userdetails
+      summary: List User Details
+      description: get all data without paging
+      parameters: 
+       
+        - name: createby
+          in: query
+          description: createby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: createby_mode
+          in: query
+          description: createby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: updateby
+          in: query
+          description: updateby values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: updateby_mode
+          in: query
+          description: updateby mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: address
+          in: query
+          description: address values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: address_mode
+          in: query
+          description: address mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+        - name: icpassport
+          in: query
+          description: icpassport values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: icpassport_mode
+          in: query
+          description: icpassport mode values that need to be considered for filter type greater than,less than,equal
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: contains
+            enum:
+              - equals
+              - contains
+              - startsWith
+              - endsWith
+              - notContains
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/userdetailsData'
+        '400':
+          description: Invalid status value
+/userdetails/suggestions:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - userdetails
+      summary: List userdetails
+      description: Keyward search data on address,icpassport
+      parameters:
+        - name: search  
+          in: query
+          description: keyword search on address,icpassport
+          required: false
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/userdetailsData'
+        '400':
+          description: Invalid status value
+/userdetails/{id}:
+    get:
+      security:
+          - bearerAuth: []
+      tags:
+        - userdetails
+      summary: List userdetails
+      description: get 
+      parameters:
+        - name: id
+          in: path
+          description: get User Details by id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/definitions/userdetailsData'
+        '400':
+          description: Invalid status value
+definitions:
+  userdetails:
+      type: object
+      properties:
+        
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        address:
+            type: string
+            minLength: 2      
+            maxLength: 300      
+        icpassport:
+            type: string
+            minLength: 2      
+            maxLength: 25      
+
+
+  userdetailsData:
+      type: object
+      properties:
+      
+        createby:
+            type: string
+        createat:
+            type: string
+            format: date-time
+        updateby:
+            type: string
+        updateat:
+            type: string
+            format: date-time
+        address:
+            type: string
+            minLength: 2      
+            maxLength: 300      
+        icpassport:
+            type: string
+            minLength: 2      
+            maxLength: 25      
+
+    

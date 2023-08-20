@@ -1,0 +1,67 @@
+@HOST = http://localhost:8080
+@AUTH = authtoken
+@TESTID = testID
+//LOGIN ENDPOINT TO GET AUTH TOKEN
+POST {{HOST}}/auth HTTP/1.1
+content-type: application/json
+
+{
+"email":"test@ucode.ai",
+"password":"123456"
+}
+###
+POST {{HOST}}/transfer HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"amount":"1.35",
+"wallettype":"Lorem",
+"wallet":"esse",
+"sourcewallet":"ullamco",
+"status":"magna",
+"comments":"Est est ullamco in eu ad dolor culpa sunt."
+}
+
+###
+
+GET {{HOST}}/transfer? HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/transfer?amount=1.35&wallettype=Lorem&wallet=esse&sourcewallet=ullamco&status=magna&comments=Est est ul HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+GET {{HOST}}/transfer/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+
+###
+PUT {{HOST}}/transfer/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"amount":"1.35",
+"wallettype":"Lorem",
+"wallet":"esse",
+"sourcewallet":"ullamco",
+"status":"magna",
+"comments":"Est est ullamco in eu ad dolor culpa sunt."
+}
+###
+PATCH {{HOST}}/transfer/{{TESTID}} HTTP/1.1
+Authorization: Bearer {{AUTH}}
+content-type: application/json
+
+{
+"amount":"1.35",
+"wallettype":"Lorem",
+"wallet":"esse",
+"sourcewallet":"ullamco",
+"status":"magna",
+"comments":"Est est ullamco in eu ad dolor culpa sunt."
+}
+###
+DELETE {{HOST}}/transfer/{{TESTID}} http/1.1
+Authorization: Bearer {{AUTH}} 
