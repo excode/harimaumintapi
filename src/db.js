@@ -8,7 +8,7 @@ const pool = new Pool({
   host: env.DB_HOST || "localhost",
   port: env.DB_PORT || "5432",
   database: env.DB_NAME || "harimau" ,
-  ssl: {
+  ssl:{
     rejectUnauthorized: env.SSL // You might want to set this to true in production
   }
 });
