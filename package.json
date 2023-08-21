@@ -41,7 +41,7 @@
         "twilio": "^3.39.3",
         "uuid": "^3.3.3",
         "yesql": "^5.0.0",
-        "pg": "^8.7.3"
+        "pg": "^8.11.3"
     },
     "devDependencies": {
     "supertest": "^6.3.3"
