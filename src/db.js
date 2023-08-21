@@ -7,8 +7,7 @@ const pool = new Pool({
   password: env.DB_PASSWORD || "" ,
   host: env.DB_HOST || "localhost",
   port: env.DB_PORT || "5432",
-  database: env.DB_NAME || "harimau" ,
-  ssl:true
+  database: env.DB_NAME || "harimau" 
 });
 //console.log(pool);
 
