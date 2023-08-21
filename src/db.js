@@ -1,7 +1,9 @@
 
 const Pool = require("pg").Pool;
 const  env  = process.env;
+const fs = require('fs');
 // PLEASE CREATE THE DATABSE harimaumint and add new user
+const sslCert = fs.readFileSync('ca-certificate.crt');
 const pool = new Pool({
   user: env.DB_USER || 'postgres',
   password: env.DB_PASSWORD || "" ,
@@ -9,7 +11,7 @@ const pool = new Pool({
   port: env.DB_PORT || "5432",
   database: env.DB_NAME || "harimau" ,
   ssl:{
-    rejectUnauthorized: env.SSL==="false"?false:true // You might want to set this to true in production
+    ca: sslCert
   }
 });
 //console.log(pool);
