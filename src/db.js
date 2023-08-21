@@ -7,7 +7,10 @@ const pool = new Pool({
   password: env.DB_PASSWORD || "" ,
   host: env.DB_HOST || "localhost",
   port: env.DB_PORT || "5432",
-  database: env.DB_NAME || "harimau" 
+  database: env.DB_NAME || "harimau" ,
+  ssl: {
+    rejectUnauthorized: true // You might want to set this to true in production
+  }
 });
 //console.log(pool);
 

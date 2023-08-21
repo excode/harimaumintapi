@@ -42,16 +42,16 @@ content-type: application/json
 }
 ###
 #MAIN REGISTRATION for Java Spring boot
-POST {{HOST1}}/users/reg HTTP/1.1
+POST {{HOST}}/users/reg HTTP/1.1
 content-type: application/json
  
 {
-"email":"boss1@harimaumint.com",
+"email":"boss11@harimaumint.com",
 "password":"123456",
 "firstname":"Harimau",
 "lastname":"Mint",
 "usertype":"0",
-"mobile":"60176408250",
+"mobile":"601764018250",
 "referral":"1@harimaumint.com"
 }
 ###
