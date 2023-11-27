@@ -9,8 +9,8 @@ const rootPath="../../";
   const FREE = config.permissionLevels.NORMAL_USER;
   const formValidationRules=[
     {ctrl:'subject',format:'text',required:true,max:50,min:0},
-{ctrl:'comments',format:'',required:true},
-{ctrl:'status',format:'',required:true}
+{ctrl:'comments',format:'',required:true}
+
   ];
   exports.routesConfig = function (app) {
       app.post('/history', [

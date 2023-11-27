@@ -12,7 +12,6 @@ const rootPath="../../";
 {ctrl:'wallettype',format:'',required:true},
 {ctrl:'wallet',format:'',required:true},
 {ctrl:'sourcewallet',format:'text',required:true},
-{ctrl:'status',format:'text',required:true},
 {ctrl:'comments',format:'',required:true,max:300,min:0}
   ];
   exports.routesConfig = function (app) {

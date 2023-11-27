@@ -13,8 +13,8 @@ const rootPath="../../";
 {ctrl:'amount',format:'number',required:true},
 {ctrl:'comments',format:'',required:true,max:300,min:0},
 {ctrl:'sourcewallettype',format:'',required:true},
-{ctrl:'wallettype',format:'',required:true},
-{ctrl:'status',format:'',required:true}
+{ctrl:'wallettype',format:'',required:true}
+
   ];
   exports.routesConfig = function (app) {
       app.post('/exchange', [

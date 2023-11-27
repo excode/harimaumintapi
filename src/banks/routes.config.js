@@ -8,7 +8,7 @@ const rootPath="../../";
   const USER = config.permissionLevels.APP_USER;
   const FREE = config.permissionLevels.NORMAL_USER;
   const formValidationRules=[
-    {ctrl:'bankname',format:'text',required:true,max:3,min:2},
+    {ctrl:'bankname',format:'text',required:true,max:50,min:2},
 {ctrl:'swiftcode',format:'text',required:true,max:20,min:4},
 {ctrl:'bankaddress',format:'text',required:true,max:300,min:10},
 {ctrl:'city',format:'text',required:true,max:50,min:1},
@@ -16,7 +16,7 @@ const rootPath="../../";
 {ctrl:'postcode',format:'text',required:true,max:20,min:2},
 {ctrl:'accountname',format:'text',required:true,max:100,min:2},
 {ctrl:'accountnumber',format:'text',required:true,max:30,min:3},
-{ctrl:'active',format:'boolean',required:true}
+{ctrl:'active',format:'boolean',required:false}
   ];
   exports.routesConfig = function (app) {
       app.post('/banks', [

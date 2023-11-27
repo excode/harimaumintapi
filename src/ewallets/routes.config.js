@@ -12,7 +12,7 @@ const rootPath="../../";
 {ctrl:'balance',format:'number',required:true},
 {ctrl:'hold',format:'number',required:true},
 {ctrl:'status',format:'boolean',required:true},
-{ctrl:'blocked',format:'boolean',required:true},
+
 {ctrl:'name',format:'text',required:true,max:25,min:2}
   ];
   exports.routesConfig = function (app) {

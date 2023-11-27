@@ -9,8 +9,7 @@ const rootPath="../../";
   const FREE = config.permissionLevels.NORMAL_USER;
   const formValidationRules=[
     {ctrl:'email',format:'text',required:true,max:150,min:5},
-{ctrl:'amount',format:'number',required:true},
-{ctrl:'status',format:'',required:true}
+{ctrl:'amount',format:'number',required:true}
   ];
   exports.routesConfig = function (app) {
       app.post('/referral', [

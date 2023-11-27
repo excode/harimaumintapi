@@ -11,8 +11,7 @@ const rootPath="../../";
     {ctrl:'name',format:'text',required:true,max:20,min:0},
 {ctrl:'code',format:'text',required:true,max:5,min:0},
 {ctrl:'decimalposition',format:'int',required:true,max:9,min:0},
-{ctrl:'maxtransfer',format:'number',required:true},
-{ctrl:'active',format:'boolean',required:true}
+{ctrl:'maxtransfer',format:'number',required:true}
   ];
   exports.routesConfig = function (app) {
       app.post('/wallettype', [

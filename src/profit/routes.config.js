@@ -10,8 +10,7 @@ const rootPath="../../";
   const formValidationRules=[
     {ctrl:'account',format:'',required:true},
 {ctrl:'level',format:'int',required:true},
-{ctrl:'username',format:'text',required:true},
-{ctrl:'status',format:'',required:true}
+{ctrl:'username',format:'text',required:true}
   ];
   exports.routesConfig = function (app) {
       app.post('/profit', [
