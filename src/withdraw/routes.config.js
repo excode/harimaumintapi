@@ -11,7 +11,7 @@ const rootPath="../../";
     {ctrl:'wallettype',format:'',required:true},
 {ctrl:'wallet',format:'',required:true},
 {ctrl:'amount',format:'number',required:true},
-{ctrl:'comment',format:'',required:true,max:300,min:0}
+{ctrl:'comment',format:'',required:false,max:300,min:0}
   ];
   exports.routesConfig = function (app) {
       app.post('/withdraw', [

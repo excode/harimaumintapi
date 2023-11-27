@@ -15,8 +15,7 @@ const rootPath="../../";
 {ctrl:'state',format:'text',required:true,max:20,min:2},
 {ctrl:'postcode',format:'text',required:true,max:20,min:2},
 {ctrl:'accountname',format:'text',required:true,max:100,min:2},
-{ctrl:'accountnumber',format:'text',required:true,max:30,min:3},
-{ctrl:'active',format:'boolean',required:false}
+{ctrl:'accountnumber',format:'text',required:true,max:30,min:3}
   ];
   exports.routesConfig = function (app) {
       app.post('/banks', [

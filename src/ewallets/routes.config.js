@@ -8,11 +8,8 @@ const rootPath="../../";
   const USER = config.permissionLevels.APP_USER;
   const FREE = config.permissionLevels.NORMAL_USER;
   const formValidationRules=[
-    {ctrl:'wallettype',format:'text',required:true},
+{ctrl:'wallettype',format:'text',required:true},
 {ctrl:'balance',format:'number',required:true},
-{ctrl:'hold',format:'number',required:true},
-{ctrl:'status',format:'boolean',required:true},
-
 {ctrl:'name',format:'text',required:true,max:25,min:2}
   ];
   exports.routesConfig = function (app) {

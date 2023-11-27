@@ -11,7 +11,7 @@ const rootPath="../../";
     {ctrl:'sourcewallet',format:'',required:true},
 {ctrl:'wallet',format:'',required:true},
 {ctrl:'amount',format:'number',required:true},
-{ctrl:'comments',format:'',required:true,max:300,min:0},
+{ctrl:'comments',format:'',required:false,max:300,min:0},
 {ctrl:'sourcewallettype',format:'',required:true},
 {ctrl:'wallettype',format:'',required:true}
 
