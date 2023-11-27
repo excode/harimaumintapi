@@ -9,15 +9,15 @@ const rootPath="../../";
   const FREE = config.permissionLevels.NORMAL_USER;
   const formValidationRules=[
     {ctrl:'accounttype',format:'text',required:true},
-{ctrl:'quantity',format:'number',required:true},
-{ctrl:'unitprice',format:'number',required:true},
-{ctrl:'total',format:'number',required:true},
-{ctrl:'maturedate',format:'date',required:true},
-{ctrl:'termscount',format:'int',required:true},
-{ctrl:'monthcount',format:'int',required:true},
-{ctrl:'status',format:'text',required:true},
-{ctrl:'block',format:'boolean',required:true},
-{ctrl:'owner',format:'email',required:true}
+  {ctrl:'quantity',format:'number',required:true},
+  {ctrl:'unitprice',format:'number',required:true},
+  {ctrl:'total',format:'number',required:true},
+  {ctrl:'maturedate',format:'date',required:true},
+  {ctrl:'termscount',format:'int',required:false},
+  {ctrl:'monthcount',format:'int',required:false},
+  {ctrl:'status',format:'text',required:false},
+  {ctrl:'block',format:'boolean',required:false},
+  {ctrl:'owner',format:'email',required:true}
   ];
   exports.routesConfig = function (app) {
       app.post('/accounts', [
